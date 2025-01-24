@@ -21,4 +21,3 @@ def izveidot_laukumu():
             poga.grid(row=row, column=col)
             
 logs=Tk()
-

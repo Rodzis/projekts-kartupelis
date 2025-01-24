@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 from random import randint
 
 #laukums un kartupeļu lielumi
@@ -23,8 +24,29 @@ def izveidot_laukumu():
 def kartupeļa_novietojums():
     global kartupeļa_pozīcija
     kartupeļa_pozīcija=[]
+    def validēt_kartupeļa_koordinātes():
+        for r,c in kartupeļa_novietojums:
+            if any((r+dr+c+dc) in kartupeļa_novietojums for dr in [-1, 0, 1] for dc in [-1, 0, 1]):
+                return False
+            return True
+    # Kods ņemts no chatgpt
+    for lielums in KARTUPEĻU_LIELUMI:
+        novietots=False
+        while not novietots:
+            orientācija = random.choice(["Horizontāls", "Vertikāls"])
+        if orientācija == "Horizontāls":
+            rinda = random.randint(1, LAUKUMS)
+            kolonna = random.randint(1, LAUKUMS - lielums + 1)
+            kuģa_koordinātes = [(rinda, kolonna + i) for i in range(lielums)]
+        else:  # "Vertikāls"
+            rinda = random.randint(1, LAUKUMS - lielums + 1)
+            kolonna = random.randint(1, LAUKUMS)
+            kuģa_koordinātes = [(rinda + i, kolonna) for i in range(lielums)]
+
+        if validēt_kartupeļa_koordinātes(kartupeļa_novietojums):
+            kartupeļa_pozīcija.extend(kuģa_koordinātes)
+            novietots = True
 
 izveidot_laukumu()  
-a=12
 logs.mainloop()
 

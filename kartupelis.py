@@ -56,7 +56,7 @@ def minēt(rinda, kolonna):
         # Atjauno pogas vizuālo izskatu
         for elements in logs.grid_slaves():
             if int(elements.grid_info()["row"]) == rinda and int(elements.grid_info()["column"]) == kolonna:
-                elements.config(bg="red", text="X")
+                elements.config(bg="cyan", text="⚫")
                 break
             # Pārbauda, vai visi kuģi ir nogremdēti
         if not kartupeļa_pozīcija:

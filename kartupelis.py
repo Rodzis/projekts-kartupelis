@@ -26,8 +26,10 @@ def izveidot_laukumu():
 
 def validēt_kartupeļa_koordinātes(kartupeļa_koordinātes):
     for r, c in kartupeļa_koordinātes:
-        if any((r + dr, c + dc) in kartupeļa_pozīcija for dr in [-1, 0, 1] for dc in [-1, 0, 1]):
-            return False
+        # Pārbauda tikai ortogonālos kaimiņus (nevis diagonālos)
+        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            if (r + dr, c + dc) in kartupeļa_pozīcija:
+                return False
     return True
 
 def kartupeļa_novietojums():
@@ -85,5 +87,3 @@ poga_spēlēt = Button(sākums_rāmis, text = "SPĒLĒT", command = izveidot_lau
 poga_spēlēt.pack()
 
 sākums.mainloop()
-
-
